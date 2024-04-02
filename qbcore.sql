@@ -20,16 +20,6 @@ CREATE TABLE IF NOT EXISTS `bank_accounts` (
   UNIQUE KEY `account_name` (`account_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
-DELIMITER $$
-CREATE TRIGGER before_insert_bank_accounts
-BEFORE INSERT ON bank_accounts
-FOR EACH ROW
-BEGIN
-  IF NEW.users IS NULL THEN
-    SET NEW.users = '[]';
-  END IF;
-END$$
-DELIMITER ;
 
 CREATE TABLE IF NOT EXISTS `bank_statements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
